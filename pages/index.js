@@ -1,4 +1,4 @@
-import {ChakraProvider, Image, Box, Spinner, Center, Grid} from "@chakra-ui/react";
+import {ChakraProvider, Box, Spinner, Center, Grid} from "@chakra-ui/react";
 import React, {useState, useEffect} from "react";
 
 import theme from "../src/theme.js";
@@ -8,7 +8,6 @@ import Listad from "../src/modules/Listapropiedad.js";
 
 export default function Home() {
   const [producto, setproducto] = useState();
-  const [imagenes, setImagenes] = useState();
 
   useEffect(() => {
     setTimeout(() => {

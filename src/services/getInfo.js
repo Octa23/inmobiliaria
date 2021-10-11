@@ -10,7 +10,7 @@ const getInfo = async () => {
       },
     )
     .then((response) => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, _reject) => {
         Papa.parse(response.data, {
           header: true,
           complete: (results) => {
