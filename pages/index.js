@@ -10,9 +10,7 @@ export default function Home() {
   const [producto, setproducto] = useState();
 
   useEffect(() => {
-    setTimeout(() => {
-      getInfo().then((res) => setproducto(res));
-    }, 5000);
+    getInfo().then((res) => setproducto(res));
 
     // setImagenes(getImages())
   }, []);
@@ -22,7 +20,12 @@ export default function Home() {
       <Box bg={"white"}>
         <Navbar />
         {producto ? (
-          <Grid gap={6} mt={6} px={6} templateColumns={{base: "1fr", md: "repeat(3,1fr)"}}>
+          <Grid
+            gap={6}
+            mt={6}
+            px={6}
+            templateColumns={{base: "1fr", md: "repeat(auto-fill, minmax(400px, 1fr))"}}
+          >
             <Listad producto={producto} />{" "}
           </Grid>
         ) : (

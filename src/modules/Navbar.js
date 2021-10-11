@@ -26,7 +26,6 @@ const Navbar = () => {
             </Link>
           </Stack>
         </Stack>
-        <Image alt="logo" maxWidth={"10xl"} src="/banner.jpg" />
       </Container>
     </Box>
   );
