@@ -23,12 +23,13 @@ export default function Home() {
           <Center>
             <Grid
               gap={6}
+              justifyContent="center"
               mt={6}
               px={6}
-              templateColumns={{base: "1fr", md: "repeat(auto-fill, minmax(300px, 1fr))"}}
+              templateColumns={{base: "repeat(auto-fill, 300px)"}}
               w={"8xl"}
             >
-              <Listad producto={producto} />{" "}
+              <Listad producto={producto} />
             </Grid>
           </Center>
         ) : (
