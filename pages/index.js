@@ -20,16 +20,19 @@ export default function Home() {
       <Box bg={"white"}>
         <Navbar />
         {producto ? (
-          <Grid
-            gap={6}
-            mt={6}
-            px={6}
-            templateColumns={{base: "1fr", md: "repeat(auto-fill, minmax(400px, 1fr))"}}
-          >
-            <Listad producto={producto} />{" "}
-          </Grid>
+          <Center>
+            <Grid
+              gap={6}
+              mt={6}
+              px={6}
+              templateColumns={{base: "1fr", md: "repeat(auto-fill, minmax(300px, 1fr))"}}
+              w={"8xl"}
+            >
+              <Listad producto={producto} />{" "}
+            </Grid>
+          </Center>
         ) : (
-          <Center h={"500px"}>
+          <Center h={"50vh"}>
             <Spinner
               color="secondary"
               emptyColor="primary"
