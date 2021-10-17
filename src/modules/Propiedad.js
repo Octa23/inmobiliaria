@@ -5,8 +5,6 @@ import Link from "next/link";
 export const Propiedad = ({propiedad}) => {
   const {Nombre, Id, Descripcion, Operacion, Precio, Imagenes} = propiedad;
 
-  console.log(propiedad);
-
   return (
     <Link href={"/prop/" + Id}>
       <Box

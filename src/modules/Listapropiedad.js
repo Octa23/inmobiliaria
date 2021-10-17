@@ -11,7 +11,7 @@ const Listad = ({producto}) =>
       nuevo,
     };
 
-    return <Propiedad key={propiedad.Id} propiedad={propiedad} />;
+    return propiedad.Disponible && <Propiedad key={propiedad.Id} propiedad={propiedad} />; //Muestra en la grid los que Disponible != ""
   });
 
 export default Listad;

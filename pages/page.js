@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 import getInfo from "../src/services/getInfo.js";
 import Listad from "../src/modules/Listapropiedad.js";
 
-function Home({data}) {
+export default function Home({data}) {
   const [producto, setproducto] = useState();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Home({data}) {
   return (
     <>
       <Box bg={"white"} mt={40}>
-        {data ? (
+        {producto ? (
           <Center>
             <Grid
               gap={6}
@@ -26,7 +26,7 @@ function Home({data}) {
               templateColumns={{base: "repeat(auto-fill, minmax(400px,1fr))"}}
               w={"8xl"}
             >
-              <Listad producto={data} />
+              <Listad producto={producto} />
             </Grid>
           </Center>
         ) : (
@@ -44,23 +44,3 @@ function Home({data}) {
     </>
   );
 }
-
-export async function getServerSideProps() {
-  const data = await getInfo();
-
-  return {props: {data}};
-}
-export default Home;
-
-{
-  /* <Box boxSize="sm" color="blue.200">
-<Image src="https://res.cloudinary.com/dcn2ctbhp/image/upload/v1633657108/Inmo/20210926_132857_e9z86y.jpg" alt="Prueba"/>
-</Box> */
-}
-// https://api.cloudinary.com/v1_1/demo/resources/video
-// curl https://885488275165474:yxjX7DK0sUk_BMc91G_cJvHfOIk@api.cloudinary.com/v1_1/dcn2ctbhp/resources/image
-// const getImages = () =>{
-//   return fetch("https://api.cloudinary.com/v1_1/dcn2ctbhp/resources/image")
-//   .then((response)=>{return response.json()})
-//   .then((json)=>{return json.resources})
-// }
