@@ -1,4 +1,4 @@
-import {ChakraProvider} from "@chakra-ui/react";
+import {ChakraProvider, Center, Button, Link} from "@chakra-ui/react";
 import React from "react";
 
 import Navbar from "../src/modules/Navbar";
@@ -8,7 +8,11 @@ function MyApp({Component, pageProps}) {
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
-      <a href="/page">Sin serverside prop</a>
+      <Center mt={10}>
+        <Link href="/page">
+          <Button colorScheme={"red"}>Sin serverside prop</Button>
+        </Link>
+      </Center>
       <Component {...pageProps} />
     </ChakraProvider>
   );
