@@ -3,27 +3,24 @@ import React from "react";
 import Link from "next/link";
 import {FaWhatsapp} from "react-icons/fa";
 
-export const Propiedadinfo = ({propiedad}) => {
+export const Propiedad = ({propiedad}) => {
   const {Nombre, Id, Descripcion, Propiedad, Operacion, Precio, Imagenes} = propiedad;
   const text = `Hola, me interesa la propiedad de la calle ${Nombre}`;
 
   return (
-    <Box w="100%">
+    <Box py={5} w={{base: "90%", lg: "40%"}}>
       <Box
         borderColor={"secondary"}
         borderRadius="lg"
         borderWidth="1px"
         boxShadow={"xl"}
-        flex={1}
-        h="300px"
-        m="auto"
-        maxW="sm"
+        justifySelf="center"
         overflow="hidden"
         p={2}
         w="100%"
       >
         <Link href={"/prop/" + Id}>
-          <Box h="60%">
+          <Box h="100%" w="100%">
             <Image
               alt={Nombre}
               borderTopRadius="lg"
@@ -81,7 +78,7 @@ export const Propiedadinfo = ({propiedad}) => {
     </Box>
   );
 };
-export default Propiedadinfo;
+export default Propiedad;
 
 {
   /* <Box

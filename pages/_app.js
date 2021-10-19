@@ -8,11 +8,6 @@ function MyApp({Component, pageProps}) {
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
-      <Center mt={10}>
-        <Link href="/page">
-          <Button colorScheme={"red"}>Sin serverside prop</Button>
-        </Link>
-      </Center>
       <Component {...pageProps} />
     </ChakraProvider>
   );

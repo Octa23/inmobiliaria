@@ -1,34 +1,24 @@
 import {Box, Spinner, Center, Grid} from "@chakra-ui/react";
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 import getInfo from "../src/services/getInfo.js";
 import Listad from "../src/modules/Listapropiedad.js";
 
 function Home({data}) {
-  const [producto, setproducto] = useState();
-
-  useEffect(() => {
-    getInfo().then((res) => setproducto(res));
-
-    // setImagenes(getImages())
-  }, []);
-
   return (
     <>
-      <Box bg={"white"} mt={40}>
+      <Box bg={"white"} mt={20}>
         {data ? (
-          <Center>
-            <Grid
-              gap={6}
-              justifyContent="center"
-              mt={6}
-              px={6}
-              templateColumns={{base: "repeat(auto-fill, minmax(400px,1fr))"}}
-              w={"8xl"}
-            >
-              <Listad producto={data} />
-            </Grid>
-          </Center>
+          <Grid
+            gap={3}
+            justifyContent="center"
+            mt={6}
+            px={3}
+            templateColumns={{base: "repeat(auto-fill, minmax(350px,1fr))"}}
+            w={"100%"}
+          >
+            <Listad producto={data} />
+          </Grid>
         ) : (
           <Center h={"50vh"}>
             <Spinner

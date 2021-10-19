@@ -1,7 +1,7 @@
 import {Box, Spinner, Center, Grid} from "@chakra-ui/react";
 import React, {useState, useEffect} from "react";
 
-import Propiedad from "../../src/modules/Propiedad";
+import Propiedadinfo from "../../src/modules/Propiedadinfo";
 import getInfo from "../../src/services/getInfo";
 
 const algo = () => {
@@ -14,8 +14,8 @@ const algo = () => {
   return (
     <>
       {producto ? (
-        <Center mt={40}>
-          <Propiedad
+        <Center>
+          <Propiedadinfo
             propiedad={producto.filter((x) => x.Id == window.location.pathname.substring(6))[0]}
           />
         </Center>
