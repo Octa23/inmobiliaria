@@ -59,7 +59,7 @@ export const Propiedadinfo = ({propiedad}) => {
                 {Nombre}
               </Box>
               <Box>
-                {Precio}
+                ${Precio}
                 <Box as="span" color="gray.600" fontSize="md">
                   / mes
                 </Box>

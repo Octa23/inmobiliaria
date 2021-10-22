@@ -1,11 +1,21 @@
-import {Box, Spinner, Center, Select, Text, StackDivider, Stack, Grid} from "@chakra-ui/react";
+import {
+  Box,
+  Spinner,
+  Center,
+  Select,
+  Text,
+  StackDivider,
+  Divider,
+  Stack,
+  Grid,
+} from "@chakra-ui/react";
 import React, {useState} from "react";
 
 import getInfo from "../src/services/getInfo.js";
 import Listad from "../src/modules/Listapropiedad.js";
 
 function Home({data}) {
-  const [filtro, setfiltro] = useState({operacion: "TODOS", propiedad: "TODOS"});
+  const [filtro, setfiltro] = useState({operacion: "TODOS", propiedad: "TODOS", orden: null});
 
   const handleChange1 = (e) => {
     setfiltro({...filtro, operacion: e.target.value});
@@ -13,18 +23,22 @@ function Home({data}) {
   const handleChange2 = (e) => {
     setfiltro({...filtro, propiedad: e.target.value});
   };
+  const handleChange3 = (e) => {
+    setfiltro({...filtro, orden: e.target.value});
+  };
 
   return (
     <>
       <Stack direction={{base: "column", xl: "row"}} divider={<StackDivider />} p={2} w="100%">
         <Stack
           alignItems="center"
+          direction={{base: "column", md: "row", xl: "column"}}
           margin={{base: "auto", xl: "0"}}
-          maxW={{base: "300px", md: "300px"}}
+          maxW={{base: "300px", md: "900px", xl: "300px"}}
           p={3}
           w="100%"
         >
-          <Text alignSelf="center" fontSize="xl">
+          <Text alignSelf="center" fontSize="xl" textAlign="center" w="100%">
             Filtrar busqueda
           </Text>
           <Select bg="green.200" borderColor="green.200" variant="filled" onChange={handleChange1}>
@@ -40,6 +54,16 @@ function Home({data}) {
             </option>
             <option value="CASA">Casas</option>
             <option value="DEPTO">Departamentos</option>
+          </Select>
+          <Select
+            bg="yellow.200"
+            borderColor="yellow.200"
+            placeholder="Ordenar por precio"
+            variant="filled"
+            onChange={handleChange3}
+          >
+            <option value="MENOR">Menor Primero</option>
+            <option value="MAYOR">Mayor Primero</option>
           </Select>
         </Stack>
 
