@@ -1,36 +1,72 @@
-import {Box, Spinner, Center, Grid} from "@chakra-ui/react";
-import React from "react";
+import {Box, Spinner, Center, Select, Text, StackDivider, Stack, Grid} from "@chakra-ui/react";
+import React, {useState} from "react";
 
 import getInfo from "../src/services/getInfo.js";
 import Listad from "../src/modules/Listapropiedad.js";
 
 function Home({data}) {
+  const [filtro, setfiltro] = useState({operacion: "TODOS", propiedad: "TODOS"});
+
+  const handleChange1 = (e) => {
+    setfiltro({...filtro, operacion: e.target.value});
+  };
+  const handleChange2 = (e) => {
+    setfiltro({...filtro, propiedad: e.target.value});
+  };
+
   return (
     <>
-      <Box bg={"white"} mt={20}>
-        {data ? (
-          <Grid
-            gap={3}
-            justifyContent="center"
-            mt={6}
-            px={3}
-            templateColumns={{base: "repeat(auto-fill, minmax(350px,1fr))"}}
-            w={"100%"}
-          >
-            <Listad producto={data} />
-          </Grid>
-        ) : (
-          <Center h={"50vh"}>
-            <Spinner
-              color="secondary"
-              emptyColor="primary"
-              size="xl"
-              speed="0.65s"
-              thickness="4px"
-            />
-          </Center>
-        )}
-      </Box>
+      <Stack direction={{base: "column", xl: "row"}} divider={<StackDivider />} p={2} w="100%">
+        <Stack
+          alignItems="center"
+          margin={{base: "auto", xl: "0"}}
+          maxW={{base: "300px", md: "300px"}}
+          p={3}
+          w="100%"
+        >
+          <Text alignSelf="center" fontSize="xl">
+            Filtrar busqueda
+          </Text>
+          <Select bg="green.200" borderColor="green.200" variant="filled" onChange={handleChange1}>
+            <option defaultValue value="TODOS">
+              Todas las operaciones
+            </option>
+            <option value="VENTA">Ventas</option>
+            <option value="ALQUILER">Alquileres</option>
+          </Select>
+          <Select bg="blue.100" borderColor="blue.100" variant="filled" onChange={handleChange2}>
+            <option defaultValue value="TODOS">
+              Todas las propiedades
+            </option>
+            <option value="CASA">Casas</option>
+            <option value="DEPTO">Departamentos</option>
+          </Select>
+        </Stack>
+
+        <Box bg={"white"} mb={5} w="100%">
+          {data ? (
+            <Grid
+              gap={3}
+              justifyContent="center"
+              p={3}
+              templateColumns={{base: "repeat(auto-fill, minmax(350px,1fr))"}}
+              w={"100%"}
+            >
+              <Listad filtro={filtro} producto={data} />
+            </Grid>
+          ) : (
+            <Center h={"50vh"}>
+              <Spinner
+                color="secondary"
+                emptyColor="primary"
+                size="xl"
+                speed="0.65s"
+                thickness="4px"
+              />
+            </Center>
+          )}
+        </Box>
+      </Stack>
     </>
   );
 }

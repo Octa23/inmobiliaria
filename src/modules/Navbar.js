@@ -7,7 +7,7 @@ const Navbar = () => {
   const text = `https://wa.me/5493484502322?text=Hola como estas`;
 
   return (
-    <Box bg="gray.200" boxShadow="lg">
+    <Box bg="gray.200" boxShadow="lg" mb={4}>
       <Container maxWidth="10xl" px={{base: 0, md: 6}}>
         <Stack alignItems="center" as="nav" direction="row" justifyContent="space-between" p={3}>
           <Link href="/">
