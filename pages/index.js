@@ -15,6 +15,22 @@ import getInfo from "../src/services/getInfo.js";
 import Listad from "../src/modules/Listapropiedad.js";
 
 function Home({data}) {
+  const prueba = () => {
+    const credencial_encoded = "885488275165474" + ":" + "yxjX7DK0sUk_BMc91G_cJvHfOIk";
+    const headers = new Headers({
+      "Content-Type": "application/json",
+    });
+
+    headers.append("Authorization", `Basic ${credencial_encoded}`);
+
+    fetch("https://@api.cloudinary.com/v1_1/dcn2ctbhp/resources/image", headers)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  };
+
+  prueba();
+
   const [filtro, setfiltro] = useState({operacion: "TODOS", propiedad: "TODOS", orden: null});
 
   const handleChange1 = (e) => {
