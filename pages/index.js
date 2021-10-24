@@ -5,32 +5,17 @@ import {
   Select,
   Text,
   StackDivider,
-  Divider,
+  Image,
   Stack,
   Grid,
 } from "@chakra-ui/react";
 import React, {useState} from "react";
+import axios from "axios";
 
 import getInfo from "../src/services/getInfo.js";
 import Listad from "../src/modules/Listapropiedad.js";
 
-function Home({data}) {
-  const prueba = () => {
-    const credencial_encoded = "885488275165474" + ":" + "yxjX7DK0sUk_BMc91G_cJvHfOIk";
-    const headers = new Headers({
-      "Content-Type": "application/json",
-    });
-
-    headers.append("Authorization", `Basic ${credencial_encoded}`);
-
-    fetch("https://@api.cloudinary.com/v1_1/dcn2ctbhp/resources/image", headers)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-  };
-
-  prueba();
-
+function Home({data, imgnes}) {
   const [filtro, setfiltro] = useState({operacion: "TODOS", propiedad: "TODOS", orden: null});
 
   const handleChange1 = (e) => {
@@ -42,6 +27,8 @@ function Home({data}) {
   const handleChange3 = (e) => {
     setfiltro({...filtro, orden: e.target.value});
   };
+
+  console.log(imgnes.resources);
 
   return (
     <>
@@ -107,26 +94,28 @@ function Home({data}) {
           )}
         </Box>
       </Stack>
+      <Stack>
+        {imgnes &&
+          imgnes.resources.map((e) => (
+            <Image
+              key={e.id}
+              alt="algo"
+              borderTopRadius="lg"
+              h="100%"
+              objectFit="cover"
+              src={e.url}
+              w="100%"
+            />
+          ))}
+      </Stack>
     </>
   );
 }
 
 export async function getServerSideProps() {
   const data = await getInfo();
+  const imgnes = await axios.get(process.env.C_URL).then((response) => response.data);
 
-  return {props: {data}};
+  return {props: {data, imgnes}};
 }
 export default Home;
-
-{
-  /* <Box boxSize="sm" color="blue.200">
-<Image src="https://res.cloudinary.com/dcn2ctbhp/image/upload/v1633657108/Inmo/20210926_132857_e9z86y.jpg" alt="Prueba"/>
-</Box> */
-}
-// https://api.cloudinary.com/v1_1/demo/resources/video
-// curl https://885488275165474:yxjX7DK0sUk_BMc91G_cJvHfOIk@api.cloudinary.com/v1_1/dcn2ctbhp/resources/image
-// const getImages = () =>{
-//   return fetch("https://api.cloudinary.com/v1_1/dcn2ctbhp/resources/image")
-//   .then((response)=>{return response.json()})
-//   .then((json)=>{return json.resources})
-// }
