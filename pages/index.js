@@ -97,15 +97,16 @@ function Home({data, imgnes}) {
       <Stack>
         {imgnes &&
           imgnes.resources.map((e) => (
-            <Image
-              key={e.id}
-              alt="algo"
-              borderTopRadius="lg"
-              h="100%"
-              objectFit="cover"
-              src={e.url}
-              w="100%"
-            />
+            <li key={e.public_id}>
+              <Image
+                alt="algo"
+                borderTopRadius="lg"
+                h="100%"
+                objectFit="cover"
+                src={e.url}
+                w="100%"
+              />
+            </li>
           ))}
       </Stack>
     </>
@@ -113,7 +114,7 @@ function Home({data, imgnes}) {
 }
 
 export async function getServerSideProps() {
-  const data = await getInfo();
+  const data = await getInfo(process.env.GS_URL);
   const imgnes = await axios.get(process.env.C_URL).then((response) => response.data);
 
   return {props: {data, imgnes}};

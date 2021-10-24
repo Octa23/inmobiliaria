@@ -1,9 +1,9 @@
 import axios from "axios";
 import Papa from "papaparse";
 
-const getInfo = async () => {
+const getInfo = async (urll) => {
   return axios
-    .get(process.env.GS_URL, {
+    .get(urll, {
       responseType: "blob",
     })
     .then((response) => {
