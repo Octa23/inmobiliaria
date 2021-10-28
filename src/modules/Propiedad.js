@@ -1,4 +1,4 @@
-import {Box, Image, Stack, Badge, Button, Link as Linkk, Divider} from "@chakra-ui/react";
+import {Box, Image, Stack, Badge, Button, Link as Linkk} from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
 import {FaWhatsapp} from "react-icons/fa";
@@ -10,6 +10,7 @@ export const Propiedadinfo = ({propiedad}) => {
   return (
     <Box w="100%">
       <Box
+        bg="white"
         borderColor={"secondary"}
         borderRadius="lg"
         borderWidth="1px"
@@ -22,17 +23,19 @@ export const Propiedadinfo = ({propiedad}) => {
         p={2}
         w="100%"
       >
-        <Link href={"/prop/" + Id}>
-          <Box h="60%">
-            <Image
-              alt={Nombre}
-              borderTopRadius="lg"
-              h="100%"
-              objectFit="cover"
-              src={Imagenes}
-              w="100%"
-            />
-          </Box>
+        <Link href={"/prop/" + Nombre}>
+          <a>
+            <Box h="60%">
+              <Image
+                alt={Nombre}
+                borderTopRadius="lg"
+                h="100%"
+                objectFit="cover"
+                src={Imagenes}
+                w="100%"
+              />
+            </Box>
+          </a>
         </Link>
         <Box p="3">
           <Stack alignItems="baseline" direction="row" spacing={2}>

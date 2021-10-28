@@ -5,6 +5,8 @@ import {
   Select,
   Text,
   StackDivider,
+  List,
+  ListItem,
   Image,
   Stack,
   Grid,
@@ -28,11 +30,15 @@ function Home({data, imgnes}) {
     setfiltro({...filtro, orden: e.target.value});
   };
 
-  console.log(imgnes.resources);
-
   return (
     <>
-      <Stack direction={{base: "column", xl: "row"}} divider={<StackDivider />} p={2} w="100%">
+      <Stack
+        bg="blue.50"
+        direction={{base: "column", xl: "row"}}
+        divider={<StackDivider borderWidth={2} />}
+        p={2}
+        w="100%"
+      >
         <Stack
           alignItems="center"
           direction={{base: "column", md: "row", xl: "column"}}
@@ -69,8 +75,7 @@ function Home({data, imgnes}) {
             <option value="MAYOR">Mayor Primero</option>
           </Select>
         </Stack>
-
-        <Box bg={"white"} mb={5} w="100%">
+        <Box mb={5} w="100%">
           {data ? (
             <Grid
               gap={3}
@@ -94,10 +99,10 @@ function Home({data, imgnes}) {
           )}
         </Box>
       </Stack>
-      <Stack>
+      <List>
         {imgnes &&
           imgnes.resources.map((e) => (
-            <li key={e.public_id}>
+            <ListItem key={e.public_id}>
               <Image
                 alt="algo"
                 borderTopRadius="lg"
@@ -106,9 +111,9 @@ function Home({data, imgnes}) {
                 src={e.url}
                 w="100%"
               />
-            </li>
+            </ListItem>
           ))}
-      </Stack>
+      </List>
     </>
   );
 }
