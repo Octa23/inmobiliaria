@@ -33,7 +33,6 @@ function Home({data, imgnes}) {
   return (
     <>
       <Stack
-        bg="blue.50"
         direction={{base: "column", xl: "row"}}
         divider={<StackDivider borderWidth={2} />}
         p={2}
@@ -75,6 +74,7 @@ function Home({data, imgnes}) {
             <option value="MAYOR">Mayor Primero</option>
           </Select>
         </Stack>
+
         <Box mb={5} w="100%">
           {data ? (
             <Grid
@@ -99,21 +99,6 @@ function Home({data, imgnes}) {
           )}
         </Box>
       </Stack>
-      <List>
-        {imgnes &&
-          imgnes.resources.map((e) => (
-            <ListItem key={e.public_id}>
-              <Image
-                alt="algo"
-                borderTopRadius="lg"
-                h="100%"
-                objectFit="cover"
-                src={e.url}
-                w="100%"
-              />
-            </ListItem>
-          ))}
-      </List>
     </>
   );
 }

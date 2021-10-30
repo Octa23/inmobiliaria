@@ -85,21 +85,3 @@ export const Propiedadinfo = ({propiedad}) => {
   );
 };
 export default Propiedadinfo;
-
-{
-  /* <Box
-  alignItems="center"
-  borderRadius="md"
-  borderWidth={"medium"}
-  justifyContent="center"
-  textAlign="center"
->
-  <Text>{Id}</Text>
-  {Imagenes && <Image alt="casa" src="https://i.blogs.es/c68014/casa-3d/450_1000.jpeg" />}
-
-  <Text>{Nombre}</Text>
-  <Text>{Descripcion}</Text>
-  <Text>{Operacion}</Text>
-  <Text>{Precio}</Text>
-</Box>; */
-}

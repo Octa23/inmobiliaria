@@ -1,22 +1,54 @@
-import {Spinner, Center} from "@chakra-ui/react";
-import React from "react";
+import {Center, Grid, Box, Stack, Image, StackDivider} from "@chakra-ui/react";
+import React, {useState} from "react";
 
-import Propiedadinfo from "../../src/modules/Propiedadinfo";
 import getInfo from "../../src/services/getInfo";
 
-const algo = ({data}) => {
+const algo = ({data, imgnes}) => {
+  const [selectedImg, setSelectedImg] = useState(data.Imagenes);
+  const imagenes = [data.Imagenes];
+
+  imgnes.map((e) => imagenes.push(e));
+  imgnes.map((e) => imagenes.push(e));
+
   return (
-    <>
-      {data ? (
-        <Center>
-          <Propiedadinfo propiedad={data} />
-        </Center>
-      ) : (
-        <Center h="50vh">
-          <Spinner color="secondary" emptyColor="primary" size="xl" speed="0.65s" thickness="4px" />
-        </Center>
-      )}
-    </>
+    <Box className="App" p={5}>
+      <Stack
+        alignItems={"center"}
+        className="container"
+        direction="column"
+        divider={<StackDivider borderColor="blackAlpha.400" borderWidth={2} />}
+      >
+        <Image
+          alt="Selected"
+          className="selected"
+          h={{base: "45vh", md: "400px", lg: "600px"}}
+          objectFit="cover"
+          src={selectedImg}
+          w={{base: "100vw", md: "70%", lg: "800px"}}
+        />
+        <Grid
+          alignItems="center"
+          gap={1}
+          justifyContent="center"
+          templateColumns={{base: "repeat(auto-fit, minmax(50px,100px))"}}
+          w="100%"
+        >
+          {imagenes.map((Imagen) => (
+            <Box key={Math.random()} h="100px" w="100%">
+              <Image
+                alt="Casa"
+                h="100%"
+                objectFit="cover"
+                src={Imagen}
+                style={{opacity: selectedImg === Imagen ? 0.5 : 1}}
+                w="100%"
+                onClick={() => setSelectedImg(Imagen)}
+              />
+            </Box>
+          ))}
+        </Grid>
+      </Stack>
+    </Box>
   );
 };
 
@@ -24,6 +56,17 @@ export async function getStaticProps({params}) {
   const data = await getInfo(process.env.GS_URL).then((respuesta) =>
     respuesta.find((x) => x.Nombre === params.nombre),
   );
+  const imagenes = await fetch(process.env.C_URL) //Devuelve un array con todas las url que contenga el nombre del campo qeu se encuentra en la google sheet
+    .then((response) => response.json())
+    .then((response) => response.resources.map((e) => e.url));
+  const imgnes = imagenes;
+  //     response.resources.map((e) => {
+  //       if (e.public_id.includes(data.Nombre)) {
+  //         return e.url;
+  //       } else return null;
+  //     }),
+  //   );
+  // const imgnes = imagenes.filter((e) => e !== null);
 
   if (!data) {
     return {
@@ -35,14 +78,12 @@ export async function getStaticProps({params}) {
   }
 
   return {
-    props: {data},
+    props: {data, imgnes},
   };
 }
 
 export async function getStaticPaths() {
-  const data = await getInfo(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkMK9JhKKEkVSifYq-4Nwr4Xz1qrtb-6lSRESU2F0RVUYRfuy7_JmD4CzVCi_dVMHaY9l4zp9ZY59m/pub?gid=0&single=true&output=csv",
-  );
+  const data = await getInfo(process.env.GS_URL);
 
   return {
     paths: data.map((propiedad) => ({
