@@ -1,6 +1,7 @@
 import {ChakraProvider, Center, Button, Link} from "@chakra-ui/react";
 import React from "react";
 
+import "../src/styles/styles.css";
 import Navbar from "../src/modules/Navbar";
 import theme from "../src/theme";
 

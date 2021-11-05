@@ -1,23 +1,11 @@
-import {
-  Box,
-  Spinner,
-  Center,
-  Select,
-  Text,
-  StackDivider,
-  List,
-  ListItem,
-  Image,
-  Stack,
-  Grid,
-} from "@chakra-ui/react";
+import {Box, Spinner, Center, Select, Text, StackDivider, Stack, Grid} from "@chakra-ui/react";
 import React, {useState} from "react";
 import axios from "axios";
 
 import getInfo from "../src/services/getInfo.js";
 import Listad from "../src/modules/Listapropiedad.js";
 
-function Home({data, imgnes}) {
+function Home({data}) {
   const [filtro, setfiltro] = useState({operacion: "TODOS", propiedad: "TODOS", orden: null});
 
   const handleChange1 = (e) => {

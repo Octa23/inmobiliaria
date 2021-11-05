@@ -4,7 +4,7 @@ import Link from "next/link";
 import {FaWhatsapp} from "react-icons/fa";
 
 export const Propiedadinfo = ({propiedad}) => {
-  const {Nombre, Id, Descripcion, Propiedad, Operacion, Precio, Imagenes} = propiedad;
+  const {Nombre, Id, Descripcion, Propiedad, Operacion, Precio, Ambientes, Imagenes} = propiedad;
   const text = `Hola, me interesa la propiedad de la calle ${Nombre}`;
 
   return (
@@ -20,7 +20,7 @@ export const Propiedadinfo = ({propiedad}) => {
         m="auto"
         maxW="sm"
         overflow="hidden"
-        p={2}
+        p={1.5}
         w="100%"
       >
         <Link href={"/prop/" + Nombre}>
@@ -54,7 +54,7 @@ export const Propiedadinfo = ({propiedad}) => {
             mt={2}
             textTransform="uppercase"
           >
-            {3} Ambientes &bull; Planta baja
+            {Ambientes} Ambientes &bull; Planta baja
           </Box>
           <Stack alignItems="center" direction="row" justifyContent="space-between" w="100%">
             <Box>
@@ -63,9 +63,7 @@ export const Propiedadinfo = ({propiedad}) => {
               </Box>
               <Box>
                 ${Precio}
-                <Box as="span" color="gray.600" fontSize="md">
-                  / mes
-                </Box>
+                <Box as="span" color="gray.600" fontSize="md" />
               </Box>
             </Box>
             <Linkk
