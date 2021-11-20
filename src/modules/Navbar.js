@@ -23,9 +23,6 @@ const Navbar = () => {
             <Linkk isExternal href="https://wa.me/5491144247588">
               <Icon as={FaWhatsapp} color="secondary" height={8} w={8} />
             </Linkk>
-            <Linkk isExternal href={text}>
-              <Icon as={FaWhatsapp} color="red.500" height={8} w={8} />
-            </Linkk>
             <Linkk isExternal href="https://www.instagram.com/inmobiliaria.jcg/">
               <Icon as={FaInstagram} color="secondary" height={8} w={8} />
             </Linkk>

@@ -2,15 +2,18 @@ import {
   Heading,
   Grid,
   Tag,
+  Icon,
   TagLabel,
-  Divider,
   Box,
   Stack,
+  Text,
   Image,
   StackDivider,
 } from "@chakra-ui/react";
 import React, {useState} from "react";
 
+import icons from "../../public/icons/icons.js";
+import Imagegalery from "../../src/modules/Imagegalery";
 import getInfo from "../../src/services/getInfo";
 
 const algo = ({data, imgnes}) => {
@@ -28,6 +31,7 @@ const algo = ({data, imgnes}) => {
         <Stack
           alignItems={"center"}
           direction={{base: "column", md: "row"}}
+          spacing={7}
           textAlign={{base: "center", md: "unset"}}
         >
           <Stack>
@@ -38,18 +42,29 @@ const algo = ({data, imgnes}) => {
               fontWeight="unset"
               px={{base: 0, md: 5}}
             >
-              {" "}
               {heading.toUpperCase()}
             </Heading>
-            <Heading
-              as="h3"
-              fontFamily="unset"
-              fontSize="2xl"
-              fontWeight="unset"
+            <Stack
+              alignItems="center"
+              direction="row"
+              justifyContent={{base: "center", md: "unset"}}
               pl={{base: 0, md: 5}}
             >
-              {data.Nombre}
-            </Heading>
+              <Icon color="black" h={6} viewBox="0 0 32 32" w={6}>
+                <path d={icons[0]} fill="currentColor" />
+                <path d={icons[1]} fill="currentColor" />
+              </Icon>
+
+              <Heading
+                alignItems="center"
+                as="h3"
+                fontFamily="unset"
+                fontSize="2xl"
+                fontWeight="unset"
+              >
+                {data.Nombre}
+              </Heading>
+            </Stack>
           </Stack>
           <Tag
             borderRadius={0}
@@ -62,6 +77,36 @@ const algo = ({data, imgnes}) => {
           >
             <TagLabel>${data.Precio.toUpperCase()}</TagLabel>
           </Tag>
+
+          <Stack
+            alignItems="center"
+            direction="row"
+            flex={1}
+            justifyContent="space-evenly"
+            spacing={{base: "50px", md: 0}}
+          >
+            <Stack alignItems="center" direction="column">
+              <Icon color="black" h={50} viewBox="0 0 512 512" w={100}>
+                <path d={icons[2]} fill="currentColor" />
+                <path d={icons[3]} fill="currentColor" />
+              </Icon>
+              <Text>2 Ambientes</Text>
+            </Stack>
+            <Stack alignItems="center" direction="column">
+              <Icon color="black" h={50} viewBox="0 0 512 512" w={100}>
+                <path d={icons[4]} fill="currentColor" />
+              </Icon>
+              <Text>2 Dormitorios</Text>
+            </Stack>
+            <Stack alignItems="center" direction="column">
+              <Icon color="black" h={50} viewBox="0 0 512 512" w={100}>
+                <path d={icons[5]} fill="currentColor" />
+                <path d={icons[6]} fill="currentColor" />
+                <path d={icons[7]} fill="currentColor" />
+              </Icon>
+              <Text>20 m2</Text>
+            </Stack>
+          </Stack>
         </Stack>
       </Box>
       <Stack className="App" direction={{base: "column", md: "row"}} p={5}>
@@ -88,6 +133,7 @@ const algo = ({data, imgnes}) => {
             alignItems="center"
             gap={1}
             justifyContent="center"
+            mb={1}
             templateColumns={{base: "repeat(auto-fit, minmax(50px,100px))"}}
             w="100%"
           >
