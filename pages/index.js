@@ -35,7 +35,7 @@ function Home({data}) {
           w="100%"
         >
           <Text alignSelf="center" fontSize="xl" textAlign="center" w="100%">
-            Filtrar busquedaa
+            Filtrar busqueda
           </Text>
           <Select bg="green.200" borderColor="green.200" variant="filled" onChange={handleChange1}>
             <option defaultValue value="TODOS">
